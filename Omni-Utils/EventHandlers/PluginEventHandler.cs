@@ -1,0 +1,55 @@
+﻿
+using CustomPlayerEffects;
+using Exiled.API.Features;
+using Exiled.API.Features.Items;
+using Exiled.Events.EventArgs.Item;
+using Exiled.Events.EventArgs.Map;
+using Exiled.Events.EventArgs.Player; 
+
+namespace Omni_Utils.EventHandlers
+{
+    public class PluginEventHandler
+    {
+        public void OnPlayerJump(JumpingEventArgs e)
+        {
+            if (e.Player.IsHuman & e.Player.IsUsingStamina)
+            { 
+                if (e.Player.IsEffectActive<Invigorated>()||e.Player.IsEffectActive<Scp207>())
+                {
+                    Log.Debug($"{e.Player.Nickname}/{e.Player.UserId} dodged stamina");
+                    return;
+                }
+                else
+                {
+                    Log.Debug($"{e.Player.Nickname}/{e.Player.UserId} used jump stamina");
+                    e.Player.Stamina -= (OmniUtilsPlugin.pluginInstance.Config.StaminaUseOnJump * 0.01f);
+                }
+            }
+        }
+
+
+
+
+
+        public void OnInteractingDoor(InteractingDoorEventArgs ev)
+        {
+            ev.Player.ShowHint($"{ev.Door.IsKeycardDoor} {ev.Door.KeycardPermissions}");
+        }
+        public void OnOpeningLocker(InteractingLockerEventArgs ev)
+        {
+
+        }
+        public void OnKeycardDoorInteract(KeycardInteractingEventArgs ev)
+        {
+
+        }
+        public void OnSpawningItem(SpawningItemEventArgs ev)
+        {
+            if (Item.Get(ev.Pickup.Serial).IsKeycard)
+            {
+                OmniUtilsPlugin.pluginInstance.AddNatural(ev.Pickup.Serial);
+                Log.Info($"Keycard {ev.Pickup.Serial} {Item.Get(ev.Pickup.Serial).GetType()} logged as naturally occuring keycard.");
+            }
+        }
+    }
+}
