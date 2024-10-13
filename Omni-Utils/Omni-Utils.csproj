@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\NickCmd.cs" />
     <Compile Include="Commands\NPCCmd.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Customs\CustomKeycard.cs" />

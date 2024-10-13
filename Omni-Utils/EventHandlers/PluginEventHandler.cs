@@ -30,26 +30,5 @@ namespace Omni_Utils.EventHandlers
 
 
 
-
-        public void OnInteractingDoor(InteractingDoorEventArgs ev)
-        {
-            ev.Player.ShowHint($"{ev.Door.IsKeycardDoor} {ev.Door.KeycardPermissions}");
-        }
-        public void OnOpeningLocker(InteractingLockerEventArgs ev)
-        {
-
-        }
-        public void OnKeycardDoorInteract(KeycardInteractingEventArgs ev)
-        {
-
-        }
-        public void OnSpawningItem(SpawningItemEventArgs ev)
-        {
-            if (Item.Get(ev.Pickup.Serial).IsKeycard)
-            {
-                OmniUtilsPlugin.pluginInstance.AddNatural(ev.Pickup.Serial);
-                Log.Info($"Keycard {ev.Pickup.Serial} {Item.Get(ev.Pickup.Serial).GetType()} logged as naturally occuring keycard.");
-            }
-        }
     }
 }

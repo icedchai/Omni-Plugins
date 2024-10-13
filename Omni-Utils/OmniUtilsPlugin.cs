@@ -56,22 +56,12 @@ namespace Omni_Utils
             {
                 Player.Jumping += EventHandler.OnPlayerJump;
             }
-            if (Config.CustomKeycardsQuestionMark)
-            {
-                Player.InteractingDoor += EventHandler.OnInteractingDoor;
-                Map.SpawningItem += EventHandler.OnSpawningItem;
-            }
 
 
         }
 
         private void UnregisterEvents()
         {
-            if (Config.CustomKeycardsQuestionMark)
-            {
-                Player.InteractingDoor -= EventHandler.OnInteractingDoor;
-                Map.SpawningItem -= EventHandler.OnSpawningItem;
-            }
 
             if (Config.FuckJumpingQuestionMark)
             {
