@@ -37,6 +37,11 @@ namespace Omni_Utils.Commands
             {
                 name = (name +$"{argument} ");
             }
+            if (name.Length > 150)
+            {
+                response = "Too long! Please input less than 150 characters";
+                return false;
+            }
             player.CustomName = name;
             Log.Info($"{player.Nickname} ({player.UserId}) set nickname to {name}");
             response = $"Set your nickname";
