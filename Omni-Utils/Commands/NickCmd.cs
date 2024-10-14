@@ -35,7 +35,7 @@ namespace Omni_Utils.Commands
             string name = "";
             foreach(string argument in arguments)
             {
-                name = (name +$"{argument} ");
+                name += $"{argument} ";
             }
             if (name.Length > 150)
             {

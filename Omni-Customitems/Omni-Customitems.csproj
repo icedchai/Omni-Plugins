@@ -66,6 +66,9 @@
     <Reference Include="Exiled.Permissions, Version=8.12.2.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\ExMod.Exiled.8.12.2\lib\net48\Exiled.Permissions.dll</HintPath>
     </Reference>
+    <Reference Include="MapEditorReborn">
+      <HintPath>..\..\..\dependancies\MER\MapEditorReborn.dll</HintPath>
+    </Reference>
     <Reference Include="Mirror">
       <HintPath>..\..\..\dependancies\Dev\Mirror.dll</HintPath>
     </Reference>
@@ -105,6 +108,7 @@
     <Compile Include="Items\Globergooban\LaserPistol.cs" />
     <Compile Include="Items\Globergooban\LaserPistolLegacy.cs" />
     <Compile Include="Items\Globergooban\LaserRifle.cs" />
+    <Compile Include="Items\SmokeGrenade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

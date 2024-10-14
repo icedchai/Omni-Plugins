@@ -196,6 +196,23 @@ namespace Omni_Customitems
             { ZoneType.Entrance,ezRoomTypes },
             { ZoneType.HeavyContainment,hczRoomTypes },
     };
+
+        /*
+         
+        
+        ITEMS LIST
+
+        01 : AIRSOFT E11
+        02 : AIRSOFT COM18
+        03 : AIRSOFT .44
+        04 : LASER RIFLE
+        05 : DISPLACE RAY
+        06 : ENERGY RIFLE
+        07 : LEGACY LASER PISTOL
+        08 : SMOKE GRENADE
+          
+         
+         */
         public override string Name => "Omni-2 Custom Items";
 
         public override string Author => "icedchqi";

@@ -18,7 +18,8 @@ namespace Omni_Utils
         public float StaminaUseOnJump { get; set; } = 30;
 
 
-
+        [Description("Whether to allow modmail")]
+        public bool ModMailEnabled { get; set; } = true;
         [Description("Whether to utilize Custom Keycard functions")]
         public bool CustomKeycardsQuestionMark { get; set; } = true;
 

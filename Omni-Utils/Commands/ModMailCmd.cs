@@ -1,0 +1,121 @@
+﻿using CommandSystem;
+using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
+using Omni_Utils;
+using PlayerRoles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Omni_Utils.Commands
+{
+    [CommandHandler(typeof(ClientCommandHandler))]
+    public class ModMailCmd : ICommand
+    {
+        public string Command { get; } = "modmail";
+
+        public string[] Aliases { get; } = new[] { "mail" };
+
+        public string Description { get; } = "Send a mail to all moderators/admins. Do not abuse!";
+
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+            if (!OmniUtilsPlugin.pluginInstance.Config.ModMailEnabled)
+            {
+                response = "Modmail command is not enabled.";
+                return false;
+            }
+            Player player = Player.Get(sender);
+            if (arguments.Count <= 0)
+            {
+                response = "USAGE: modmail (MESSAGE)";
+                return false;
+            }
+            if (OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(player.Id))
+            {
+                response = "You are banned from using modmail for the remainder of the session. Try again when the server restarts, or another day.";
+            }
+            if (player == null)
+            {
+                response = "You must exist to run this command!";
+                return false;
+            }
+            string msg = "";
+            foreach(string argument in arguments)
+            {
+                msg += $"{argument} ";
+            }
+            msg += $"\n ~{player.Nickname} ({player.Id})";
+            if (msg.Length > 100)
+            {
+                response = "Too long! Please input less than 90 characters";
+                return false;
+            }
+            foreach(Player p in Player.List)
+            {
+                if (p.CheckPermission("omni.modmail"))
+                {
+                    p.ShowHint(msg, 10);
+                }
+            } 
+            Log.Info($"{player.Nickname} ({player.UserId}) sent modmail: {msg}");
+            response = $"Sent message!";
+            return true;
+        }
+    }
+/*    [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    public class ModMailBan : ICommand
+    {
+        public string Command { get; } = "modmailmute";
+
+        public string[] Aliases => throw new NotImplementedException();
+
+        public string Description { get; } = "Mutes a player from using modmail.";
+
+        public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+        {
+            Player player = Player.Get(sender);
+            Player bannee = null;
+            if (!int.TryParse(arguments.At(0), out int a))
+            {
+                response = "USAGE: modmailmute (PlayerID)";
+                return false;
+            }
+            foreach (Player p in Player.List)
+            {
+                if (p.Id == a)
+                {
+                    bannee = p;
+                }
+                else
+                {
+                    response = "ID does not correspond to a player";
+                    return false;
+                }
+            }
+            if (player.CheckPermission("omni.modmail"))
+            {
+                if (!OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(bannee.Id))
+                {
+                    OmniUtilsPlugin.pluginInstance.ModMailBans.Add(bannee.Id);
+                    response = "Player banned from modmail!";
+                }
+                else
+                {
+                    OmniUtilsPlugin.pluginInstance.ModMailBans.Remove(bannee.Id);
+                    response = "Player unbanned from modmail!";
+                }
+
+                return true;
+            }
+            else
+            {
+                response = "Need permssion omni.modmail to use this command";
+                return false;
+            }
+
+        }
+    }*/
+}

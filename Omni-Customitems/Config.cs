@@ -12,6 +12,8 @@ namespace Omni_Customitems
         public bool Debug { get; set; } = true;
         [Description("Custom Item ID prefix")]
         public uint IdPrefix { get; set; } = 1100;
+        [Description("Name of the schematic spawned by the smoke grenade")]
+        public string GrenadeSmokeSchematic { get; set; } = "GrenadeSmoke";
         public float EnergyRifleDmg { get; set; } = 70;
         public byte LaserRifleClip { get; set; } = 10;
         public float LaserRifleDmg { get; set; } = 25;

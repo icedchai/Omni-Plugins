@@ -1,15 +1,17 @@
 ﻿using Exiled.API.Features.Attributes;
 using Exiled.API.Features.Spawn;
 using Exiled.CustomItems.API.Features;
+using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.Features;
+using InventorySystem.Items.Firearms;
 using PlayerStatsSystem;
 
 namespace Omni_Customitems.Items.Globergooban
 {
     [CustomItem(ItemType.ParticleDisruptor)]
     public class EnergyRifle : CustomItem
-    {
+    { 
         public float Damage { get; set; } = CustomItemsPlugin.pluginInstance.Config.EnergyRifleDmg;
         public override uint Id { get; set; } = CustomItemsPlugin.pluginInstance.Config.IdPrefix + 06;
         public override string Name { get; set; } = "Standard Energy Rifle";
@@ -40,7 +42,7 @@ namespace Omni_Customitems.Items.Globergooban
         {
             if (Check(ev.Firearm))
             {
-                ev.Firearm.Ammo = 5;
+                ev.Firearm.Ammo = 6;
             }
         }
 
@@ -66,5 +68,10 @@ namespace Omni_Customitems.Items.Globergooban
             }
         }
 
+
+        protected void OnExploding(ExplodingGrenadeEventArgs ev)
+        {
+            
+        }
     }
 }

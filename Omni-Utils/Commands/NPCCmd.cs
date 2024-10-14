@@ -24,7 +24,7 @@ namespace OMNI_2_UTILS.Commands
             Player player = Player.Get(sender);
             if(arguments.Count <= 1)
             {
-                response = "USAGE: npc (name) (RoleTypeID)";
+                response = "USAGE: npc (RoleTypeID) (name)";
                 return false;
             }
             if (player == null)
@@ -32,12 +32,22 @@ namespace OMNI_2_UTILS.Commands
                 response = "You must exist to run this command!";
                 return false;
             }
-            if(! Enum.TryParse(arguments.At(1), out RoleTypeId Role))
+            if(! Enum.TryParse(arguments.At(0), out RoleTypeId Role))
             {
                 response = "That is not a role.";
                 return false;
             }
-            Npc npc = Npc.Spawn(arguments.At(0), Role, 0, "ID_Dedicated", player.Position);
+            string name = "";
+            foreach (string argument in arguments)
+            {
+                if (argument == arguments.At(0))
+                { }
+                else
+                {
+                    name = (name + $"{argument} ");
+                }
+            }
+            Npc npc = Npc.Spawn(name, Role, 0, "ID_Dedicated", player.Position);
             OmniUtilsPlugin.pluginInstance.Npcs.Add(npc.Id);
             Log.Info($"{player.Nickname} ({player.UserId}) spawned an NPC");
             response = $"Spawned an NPC at your location! ID is {npc.Id}. {npc.UserId}";

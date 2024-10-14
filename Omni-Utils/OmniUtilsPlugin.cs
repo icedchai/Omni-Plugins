@@ -37,6 +37,7 @@ namespace Omni_Utils
 
         public override Version Version => new(1, 0, 1);
 
+        public List<int> ModMailBans { get; set; } = new List<int>();
         public List<int> Npcs { get; set; } = new List<int>();
         PluginEventHandler EventHandler;
         public override void OnEnabled()

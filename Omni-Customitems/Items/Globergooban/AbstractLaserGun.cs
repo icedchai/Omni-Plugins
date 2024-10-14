@@ -17,7 +17,7 @@ namespace Omni_Customitems.Items.Globergooban
         public override string Name { get; set; }
         public override string Description { get; set; }
         public override float Weight { get; set; }
-        public override SpawnProperties? SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; }
         protected void OnChangingAttachment(ChangingAttachmentsEventArgs ev)
         {
             if (Check(ev.Firearm))
