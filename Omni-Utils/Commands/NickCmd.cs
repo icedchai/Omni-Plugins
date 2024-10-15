@@ -37,9 +37,9 @@ namespace Omni_Utils.Commands
             {
                 name += $"{argument} ";
             }
-            if (name.Length > 150)
+            if (name.Length > 48)
             {
-                response = "Too long! Please input less than 150 characters";
+                response = "Too long! Please input less than 49 characters";
                 return false;
             }
             player.CustomName = name;
