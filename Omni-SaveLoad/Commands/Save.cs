@@ -1,6 +1,7 @@
 ﻿using CommandSystem;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Omni_SaveLoad.API;
 using System;
 using System.Linq;
 
@@ -25,45 +26,9 @@ namespace SCP_SL_SAVELOAD.Commands
                 response = "You do not have permission to create a savestate.";
                 return false;
             }
-            if (player.IsDead)
-            {
-                response = "You cannot save a state while dead";
-                return false;
-            }
-            if (SaveLoadPlugin.SavePlayers.ContainsKey(player.UserId))
-            {
-                SaveLoadPlugin.SavePlayers.Remove(player.UserId);
-                SaveLoadPlugin.SavePlayers.Add(player.UserId, new SaveState
-                {
-                    Health = player.Health,
-                    AHP = player.ArtificialHealth,
-                    RelativePosition = player.RelativePosition,
-                    Items = player.Items.ToList(),
-                    Effects = player.ActiveEffects.Select(x => new Effect(x)).ToList(),
-                    Name = player.Nickname,
-                    Role = player.Role.Type,
-                    CurrentRound = true,
-                    Ammo = player.Ammo.ToDictionary(x => x.Key.GetAmmoType(), x => x.Value),
-                });
-            }
-            else
-            {
-                SaveLoadPlugin.SavePlayers.Add(player.UserId, new SaveState
-                {
-                    Health = player.Health,
-                    RelativePosition = player.RelativePosition,
-                    Items = player.Items.ToList(),
-                    Effects = player.ActiveEffects.Select(x => new Effect(x)).ToList(),
-                    Name = player.Nickname,
-                    Role = player.Role.Type,
-                    CurrentRound = true,
-                    Ammo = player.Ammo.ToDictionary(x => x.Key.GetAmmoType(), x => x.Value),
-                });
-            }
-            player.ShowHint("Saved.");
-            response = "Saved!";
-            // Return true if the command was executed successfully; otherwise, false.
-            return true;
+            bool allowed = false;
+            SaveLoadAPI.Save(player, out response, out allowed);
+            return allowed;
         }
     }
 }

@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\SaveLoadAPI.cs" />
     <Compile Include="Commands\Load.cs" />
     <Compile Include="Commands\Save.cs" />
     <Compile Include="Config.cs" />
@@ -105,5 +106,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

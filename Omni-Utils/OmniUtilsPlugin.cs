@@ -35,7 +35,7 @@ namespace Omni_Utils
 
         public override string Prefix => "omni-utils";
 
-        public override Version Version => new(1, 0, 1);
+        public override Version Version => new(1, 0, 2);
 
         public List<int> ModMailBans { get; set; } = new List<int>();
         public List<int> Npcs { get; set; } = new List<int>();
@@ -57,6 +57,11 @@ namespace Omni_Utils
             {
                 Player.Jumping += EventHandler.OnPlayerJump;
             }
+            if (Config.DisconnectSafety)
+            {
+                Player.Destroying += EventHandler.OnDisconnect;
+            }
+            Player.InteractingDoor += EventHandler.OnOpeningDoor;
 
 
         }
@@ -68,6 +73,11 @@ namespace Omni_Utils
             {
                 Player.Jumping -= EventHandler.OnPlayerJump;
             }
+            if (Config.DisconnectSafety)
+            {
+                Player.Destroying -= EventHandler.OnDisconnect;
+            }
+            Player.InteractingDoor -= EventHandler.OnOpeningDoor;
             EventHandler = null;
 
         }

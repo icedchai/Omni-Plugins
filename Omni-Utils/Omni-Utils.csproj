@@ -108,5 +108,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Omni-SaveLoad\Omni-SaveLoad.csproj">
+      <Project>{921d949e-9526-4d59-8b99-18fd7a4a4ca8}</Project>
+      <Name>Omni-SaveLoad</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

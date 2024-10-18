@@ -33,9 +33,10 @@ namespace Omni_Utils.Commands
                 response = "USAGE: modmail (MESSAGE)";
                 return false;
             }
-            if (OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(player.Id))
+            if (OmniUtilsPlugin.pluginInstance.Config.MailBannedPlayers.Contains(player.UserId))
             {
-                response = "You are banned from using modmail for the remainder of the session. Try again when the server restarts, or another day.";
+                response = "You are banned from using modmail. Try again later.";
+                return false;
             }
             if (player == null)
             {
@@ -65,20 +66,22 @@ namespace Omni_Utils.Commands
             return true;
         }
     }
-/*    [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class ModMailBan : ICommand
     {
         public string Command { get; } = "modmailmute";
 
-        public string[] Aliases => throw new NotImplementedException();
+        public string[] Aliases { get; } = new[] {"mailmute", "mailban",};
 
-        public string Description { get; } = "Mutes a player from using modmail.";
+        public string Description { get; } = "Mutes or unmutes a player from using modmail.";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
             Player bannee = null;
-            if (!int.TryParse(arguments.At(0), out int a))
+            if (!int.TryParse(arguments.At(0), out int a)
+                
+                |arguments.At(0)==null)
             {
                 response = "USAGE: modmailmute (PlayerID)";
                 return false;
@@ -97,15 +100,15 @@ namespace Omni_Utils.Commands
             }
             if (player.CheckPermission("omni.modmail"))
             {
-                if (!OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(bannee.Id))
+                if (!OmniUtilsPlugin.pluginInstance.Config.MailBannedPlayers.Contains(bannee.UserId))
                 {
-                    OmniUtilsPlugin.pluginInstance.ModMailBans.Add(bannee.Id);
-                    response = "Player banned from modmail!";
+                    OmniUtilsPlugin.pluginInstance.Config.MailBannedPlayers.Add(bannee.UserId);
+                    response = $"Player {bannee.Nickname} {bannee.UserId} banned from modmail!";
                 }
                 else
                 {
-                    OmniUtilsPlugin.pluginInstance.ModMailBans.Remove(bannee.Id);
-                    response = "Player unbanned from modmail!";
+                    OmniUtilsPlugin.pluginInstance.Config.MailBannedPlayers.Remove(bannee.UserId);
+                    response = $"Player {bannee.Nickname} {bannee.UserId} unbanned from modmail!";
                 }
 
                 return true;
@@ -117,5 +120,5 @@ namespace Omni_Utils.Commands
             }
 
         }
-    }*/
+    }
 }

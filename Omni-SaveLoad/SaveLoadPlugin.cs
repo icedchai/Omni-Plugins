@@ -14,7 +14,7 @@ namespace SCP_SL_SAVELOAD
 
         public override string Prefix => "omni-gordonfreeman-agentissac";
         public static SaveLoadPlugin pluginInstance { get; set; }
-        public override Version Version => new(1, 0, 1);
+        public override Version Version => new(1, 0, 2);
         PluginEventHandler EventHandler;
         public static Dictionary<string, SaveState> SavePlayers { get; } = new();
         public static Dictionary<string, int> LoadCooldown { get; } = new();

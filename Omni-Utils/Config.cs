@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Exiled.API.Interfaces;
 
 
@@ -17,12 +18,15 @@ namespace Omni_Utils
         [Description("Percent of stamina to consume when jumping")]
         public float StaminaUseOnJump { get; set; } = 30;
 
+        [Description("Whether to use Save/Load for players that get disconnected.")]
+        public bool DisconnectSafety { get; set; } = true;
 
         [Description("Whether to allow modmail")]
         public bool ModMailEnabled { get; set; } = true;
         [Description("Whether to utilize Custom Keycard functions")]
         public bool CustomKeycardsQuestionMark { get; set; } = true;
-
+        [Description("List of banned players")]
+        public List<string> MailBannedPlayers { get; set; } = new List<string>();
 
     }
 }

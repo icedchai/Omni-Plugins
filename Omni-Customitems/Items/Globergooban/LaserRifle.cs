@@ -23,7 +23,7 @@ namespace Omni_Customitems.Items.Globergooban
             AttachmentName.AmmoCounter,
             AttachmentName.RifleBody,
             AttachmentName.StandardStock,
-            AttachmentName.Laser,
+            AttachmentName.Foregrip,
             AttachmentName.FlashHider,
         };
 

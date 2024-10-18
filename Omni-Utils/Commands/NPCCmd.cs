@@ -22,10 +22,21 @@ namespace OMNI_2_UTILS.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
-            if(arguments.Count <= 1)
+            if(arguments.Count < 1)
             {
-                response = "USAGE: npc (RoleTypeID) (name)";
+                response = "USAGE: npc (RoleTypeID) (name) OR npc clear";
                 return false;
+            }
+            if (arguments.At(0) == "clear")
+            {
+                foreach(int id in OmniUtilsPlugin.pluginInstance.Npcs)
+                {
+                    Npc.Get(id).Destroy();
+                    OmniUtilsPlugin.pluginInstance.Npcs.Remove(id);
+                    response = "Destroyed all NPCs.";
+                    Log.Info(response);
+                    return true;
+                }
             }
             if (player == null)
             {
@@ -34,7 +45,7 @@ namespace OMNI_2_UTILS.Commands
             }
             if(! Enum.TryParse(arguments.At(0), out RoleTypeId Role))
             {
-                response = "That is not a role.";
+                response = "That is not a role. Make sure you typed it with correct capitalization & spelling!";
                 return false;
             }
             string name = "";
@@ -49,7 +60,7 @@ namespace OMNI_2_UTILS.Commands
             }
             Npc npc = Npc.Spawn(name, Role, 0, "ID_Dedicated", player.Position);
             OmniUtilsPlugin.pluginInstance.Npcs.Add(npc.Id);
-            Log.Info($"{player.Nickname} ({player.UserId}) spawned an NPC");
+            Log.Info($"{player.Nickname} ({player.UserId}) spawned an NPC, with name {name} and role {Role}");
             response = $"Spawned an NPC at your location! ID is {npc.Id}. {npc.UserId}";
             return true;
         }
