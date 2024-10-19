@@ -48,10 +48,6 @@ namespace Omni_Customitems
         RoomType.LczAirlock,
         //
         // Summary:
-        //     Light Containment Zone's PT-00 room.
-        RoomType.Lcz173,
-        //
-        // Summary:
         //     Light Containment Zone's Class-D spawn room.
         RoomType.LczClassDSpawn,
         //
@@ -105,24 +101,12 @@ namespace Omni_Customitems
         RoomType.Hcz106,
         //
         // Summary:
-        //     Heavy Containment Zone's nuke room.
-        RoomType.HczNuke,
-        //
-        // Summary:
-        //     Heavy Containment Zone's Servers room.
-        RoomType.HczServers,
-        //
-        // Summary:
         //     Heavy Containment Zone's 3-way intersection.
         RoomType.HczTCross,
             //
             // Summary:
             //     Heavy Containment Zone's cruved hall.
         RoomType.HczCurve,
-        //
-        // Summary:
-        //     Heavy Containment Zone's test room's straight hall.
-        RoomType.HczTestRoom,
         //
         // Summary:
         //     Heavy Containment Zone's Elevator System A room.
@@ -155,10 +139,6 @@ namespace Omni_Customitems
         // Summary:
         //     Entrance Zone's 4-way intersection.
         RoomType.EzCrossing,
-        //
-        // Summary:
-        //     Entrance Zone's Red Collapsed Tunnel Room.
-        RoomType.EzCollapsedTunnel,
         //
         // Summary:
         //     Entrance Zone's straight hall with Dr.L's locked room.

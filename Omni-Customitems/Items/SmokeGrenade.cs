@@ -38,7 +38,7 @@ namespace Omni_Customitems.Items
         protected void OnThrown(ThrownProjectileEventArgs ev)
         {
 
-            ev.Player.ShowHint($"Smoke out! {Item.Get(ev.Projectile.Serial)}");
+            //ev.Player.ShowHint($"Smoke out! {Item.Get(ev.Projectile.Serial)}");
         }
         protected void OnExploding(ExplodingGrenadeEventArgs ev)
         {

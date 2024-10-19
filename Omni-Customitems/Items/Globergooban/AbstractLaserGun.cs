@@ -56,6 +56,11 @@ namespace Omni_Customitems.Items.Globergooban
                 {
                     return;
                 }
+                if(ev.Target.IsGodModeEnabled)
+                {
+                    ev.CanHurt = false;
+                    return;
+                }
                 ev.CanHurt = false;
                 if (ev.Target != null)
                 {

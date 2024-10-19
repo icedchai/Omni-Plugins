@@ -25,8 +25,6 @@ namespace Omni_Utils
         public bool ModMailEnabled { get; set; } = true;
         [Description("Whether to utilize Custom Keycard functions")]
         public bool CustomKeycardsQuestionMark { get; set; } = true;
-        [Description("List of banned players")]
-        public List<string> MailBannedPlayers { get; set; } = new List<string>();
 
     }
 }

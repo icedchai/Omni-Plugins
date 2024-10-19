@@ -31,6 +31,11 @@ namespace Omni_Customitems.Items.Globergooban
             base.OnShot(ev);
             if (Check(ev.Player.CurrentItem) && ev.Target != null)
             {
+                if (ev.Target.IsGodModeEnabled)
+                {
+                    ev.CanHurt = false;
+                    return;
+                }
                 RoomType room = CustomItemsPlugin.zoneToRooms[ev.Target.Zone].RandomItem();
                 Timing.CallDelayed(.01f, () =>
                 ev.Target.Teleport(Room.Get(room).Position + new UnityEngine.Vector3(0, 1.2f, 0)
