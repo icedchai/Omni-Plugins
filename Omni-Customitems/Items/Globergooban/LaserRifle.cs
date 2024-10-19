@@ -14,7 +14,7 @@ namespace Omni_Customitems.Items.Globergooban
         public override string Name { get; set; } = "Type 15 Laser Rifle";
         public override string Description { get; set; }
         public override float Weight { get; set; } = 4;
-        public override SpawnProperties? SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; }
 
         public override AttachmentName[] Attachments { get; set; } = new[]
         {

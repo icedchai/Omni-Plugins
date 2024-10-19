@@ -15,8 +15,8 @@ namespace Omni_Customitems
         [Description("Name of the schematic spawned by the smoke grenade")]
         public string GrenadeSmokeSchematic { get; set; } = "GrenadeSmoke";
         public float EnergyRifleDmg { get; set; } = 70;
-        public byte LaserRifleClip { get; set; } = 10;
-        public float LaserRifleDmg { get; set; } = 25;
+        public byte LaserRifleClip { get; set; } = 15;
+        public float LaserRifleDmg { get; set; } = 20;
 
         public byte LaserPistolClip { get; set; } = 20;
         public float LaserPistolDmg { get; set; } = 40;

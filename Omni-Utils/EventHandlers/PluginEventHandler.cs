@@ -77,6 +77,7 @@ namespace Omni_Utils.EventHandlers
             bool allowed;
             SaveLoadAPI.Save(e.Player,out response, out allowed);
             Log.Info($"{e.Player.Nickname} {e.Player.UserId} disconnected; tried to SaveState: {response}, allowed: {allowed}");
-*/        }
+*/      
+        }
     }
 }

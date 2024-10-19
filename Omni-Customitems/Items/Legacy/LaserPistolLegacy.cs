@@ -10,7 +10,7 @@ using MEC;
 namespace Omni_Customitems.Items.Globergooban
 {
     [CustomItem(ItemType.GunCom45)]
-    public class LaserPistolLegacy : AbstractLaserGun
+    public class LaserPistolLegacy : LegacyAbstractLaserGun
     {
         public override float Damage { get; set; } = 4;
         public override uint Id { get; set; } = CustomItemsPlugin.pluginInstance.Config.IdPrefix + 07;

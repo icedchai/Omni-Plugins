@@ -18,7 +18,7 @@ namespace Omni_Customitems.Items.Globergooban
         public override string Name { get; set; } = "GG-22 Particle Displacement Ray";
         public override string Description { get; set; }
         public override float Weight { get; set; } = 4;
-        public override SpawnProperties? SpawnProperties { get; set; }
+        public override SpawnProperties SpawnProperties { get; set; }
         public override AttachmentName[] Attachments { get; set; } = new[]
         {
             AttachmentName.None,
