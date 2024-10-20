@@ -83,7 +83,7 @@ namespace Omni_Utils.Commands
             Player bannee = null;
             if (!int.TryParse(arguments.At(0), out int a)
                 
-                |arguments.At(0)==null)
+                ||arguments.At(0)==null)
             {
                 response = "USAGE: modmailmute (PlayerID)";
                 return false;

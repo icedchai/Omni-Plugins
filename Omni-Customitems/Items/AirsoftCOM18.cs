@@ -10,7 +10,7 @@ namespace Omni_Customitems.Items
     {
         [YamlIgnore]
         public override AttachmentName[] Attachments { get; set; } = new[]
-{
+    {
         AttachmentName.SoundSuppressor,
         AttachmentName.IronSights,
         AttachmentName.Flashlight,

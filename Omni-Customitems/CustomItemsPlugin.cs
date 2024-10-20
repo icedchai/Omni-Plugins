@@ -199,7 +199,7 @@ namespace Omni_Customitems
 
         public override string Prefix => "omni-customitems";
 
-        public override Version Version => new(1, 0, 0);
+        public override Version Version => new(1, 1, 0);
         public override void OnEnabled()
         {
             pluginInstance = this;
