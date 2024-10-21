@@ -38,6 +38,11 @@ namespace Omni_CustomSquads
                         return;
                     }
                     CustomSquadsPlugin.pluginInstance.NextWaveCi = null;
+                    if (!queue.Contains(RoleTypeId.ChaosRepressor))
+                    {
+                        queue.Dequeue();
+                        queue.Enqueue(RoleTypeId.ChaosRepressor);
+                    }
                     foreach (RoleTypeId role in queue)
                     {
                         if (players.Count <= 0)
@@ -57,13 +62,9 @@ namespace Omni_CustomSquads
                                 break;
                         }
                     }
-                    if (customSquad.EntranceAnnouncement == null)
+                    if (!customSquad.UseCassieAnnouncement)
                     {
                         return;
-                    }
-                    if(customSquad.EntranceAnnouncementSubs==null)
-                    {
-                        Cassie.Message(customSquad.EntranceAnnouncement);
                     }
                     Cassie.MessageTranslated(customSquad.EntranceAnnouncement, customSquad.EntranceAnnouncementSubs);
                 }
@@ -102,13 +103,9 @@ namespace Omni_CustomSquads
                                 break;
                         }
                     }
-                    if (customSquad.EntranceAnnouncement == null)
+                    if (!customSquad.UseCassieAnnouncement)
                     {
                         return;
-                    }
-                    if (customSquad.EntranceAnnouncementSubs == null)
-                    {
-                        Cassie.Message(customSquad.EntranceAnnouncement);
                     }
                     Cassie.MessageTranslated(customSquad.EntranceAnnouncement, customSquad.EntranceAnnouncementSubs);
                 }

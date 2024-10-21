@@ -106,14 +106,14 @@
     <Compile Include="Config\Config.cs" />
     <Compile Include="Config\CustomSquad.cs" />
     <Compile Include="CustomSquadsPlugin.cs" />
-    <Compile Include="Custom\CustomPrivate.cs" />
-    <Compile Include="Custom\CustomSergeant.cs" />
-    <Compile Include="Custom\CustomCaptain.cs" />
     <Compile Include="PluginEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Custom\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

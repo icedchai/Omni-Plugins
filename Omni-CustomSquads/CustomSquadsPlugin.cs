@@ -2,7 +2,6 @@
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using Omni_CustomSquads.Config;
-using Omni_CustomSquads.Custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,31 +63,11 @@ namespace Omni_CustomSquads
             for (int i = 0; i <= Config.customSquads.Count - 1; i++)
             {
                 CustomSquad squad = Config.customSquads[i];
-
-                SetupRole(squad.customCaptain, squad,0);
-
-                SetupRole(squad.customSergeant, squad, 1);
-
-                SetupRole(squad.customPrivate, squad, 2);
-
-                pluginInstance.squadNameToIndex.Add(squad.SquadName, i);
+                pluginInstance.squadNameToIndex.Add(squad.SquadName.ToLower(), i);
                 Log.Info($"{squad.SquadName} {i}");
             }
         }
-        public static void SetupRole(CustomCaptain customCaptain, CustomSquad squad, int Rank)
-        {
-            customCaptain.Team = squad.Team;
-            customCaptain.IsFriendOf = squad.IsFriendsWith;
 
-            customCaptain.RoleAppearance = customCaptain.Role;
-            customCaptain.SpawnBroadcast = squad.SpawnBroadcast + $" You are a {squad.Ranks[Rank]}";
-            customCaptain.SpawnBroadcastDuration = 15;
-            customCaptain.CustomInfo = $"{squad.CustomInfo} {squad.Ranks[Rank]}";
-            customCaptain.Id += pluginInstance.Config.IdPrefix;
-            customCaptain.CanEscape = false;
-            customCaptain.RoleAfterEscape = null;
-            UncomplicatedCustomRoles.API.Features.CustomRole.Register(customCaptain);
-        }
         public override void OnDisabled()
         {
             base.OnDisabled();

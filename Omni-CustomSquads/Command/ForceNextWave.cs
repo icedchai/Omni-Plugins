@@ -28,18 +28,20 @@ namespace Omni_CustomSquads.Command
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
+            Cassie.MessageTranslated("MTFUnit nato_d 4 designated Minute Men hasentered", "MTFUnit nato_d 4 designated Minute Men hasentered", false, true, true);
+            Cassie.MessageTranslated("allremaining", "allremaining", false, false, true);
             if (!player.CheckPermission(PlayerPermissions.RoundEvents))
             {
                 response = "You do not have permission to use this command! Permission: PlayerPermissions.RoundEvents";
                 return false;
             }
-            if (arguments.Count < 1 & !pluginInstance.squadNameToIndex.ContainsKey(arguments.At(0)))
+            if (arguments.Count < 1 & !pluginInstance.squadNameToIndex.ContainsKey(arguments.At(0).ToLower()))
             {
                 response = "USAGE: forcewave {Custom Squad Name}";
                 return false;
             }
 
-            string arg0 = arguments.At(0);
+            string arg0 = arguments.At(0).ToLower();
             int squadIndex;
             if(!pluginInstance.squadNameToIndex.TryGetValue(arg0, out squadIndex))
             {
