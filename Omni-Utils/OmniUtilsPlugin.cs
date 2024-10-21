@@ -9,6 +9,7 @@ using YamlDotNet;
 using YamlDotNet.Serialization;
 using System.ComponentModel.Design;
 using Exiled.Events;
+using MEC;
 
 namespace Omni_Utils
 {
@@ -49,7 +50,6 @@ namespace Omni_Utils
         PluginEventHandler EventHandler;
         public override void OnEnabled()
         {
-
             pluginInstance = this;
             var serializer = new Serializer();
             if (!File.Exists(ModMailBanPath))

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UncomplicatedCustomRoles.Extensions;
 
 namespace Omni_CustomSquads
 {
@@ -26,11 +27,12 @@ namespace Omni_CustomSquads
             }
             if (e.NextKnownTeam==Respawning.SpawnableTeamType.ChaosInsurgency)
             {
-                e.IsAllowed = false;
+                
                 if (CustomSquadsPlugin.pluginInstance.NextWaveCi != null)
                 {
+                    e.IsAllowed = false;
                     customSquadName = CustomSquadsPlugin.pluginInstance.NextWaveCi;
-                    customSquad = CustomSquadsPlugin.TryGetCustomSquad(CustomSquadsPlugin.pluginInstance.NextWaveCi);
+                    customSquad = CustomSquadsPlugin.TryGetCustomSquad(customSquadName);
                     if (customSquad == null)
                     {
                         return;
@@ -45,13 +47,13 @@ namespace Omni_CustomSquads
                         switch (role)
                         {
                             case RoleTypeId.ChaosRepressor:
-                                customSquad.customCaptain.AddRole(player);
+                                player.SetCustomRole(customSquad.customCaptain);
                                 break;
                             case RoleTypeId.ChaosMarauder:
-                                customSquad.customSergeant.AddRole(player);
+                                player.SetCustomRole(customSquad.customSergeant); 
                                 break;
-                            case RoleTypeId.ChaosRifleman|RoleTypeId.ChaosConscript:
-                                customSquad.customPrivate.AddRole(player);
+                            case RoleTypeId.ChaosRifleman:
+                                player.SetCustomRole(customSquad.customPrivate); 
                                 break;
                         }
                     }
@@ -70,11 +72,12 @@ namespace Omni_CustomSquads
 
             if (e.NextKnownTeam == Respawning.SpawnableTeamType.NineTailedFox)
             {
-                e.IsAllowed = false;
+                
                 if (CustomSquadsPlugin.pluginInstance.NextWaveMtf != null)
                 {
+                    e.IsAllowed = false;
                     customSquadName = CustomSquadsPlugin.pluginInstance.NextWaveMtf;
-                    customSquad = CustomSquadsPlugin.TryGetCustomSquad(CustomSquadsPlugin.pluginInstance.NextWaveMtf);
+                    customSquad = CustomSquadsPlugin.TryGetCustomSquad(customSquadName);
                     if (customSquad == null)
                     {
                         return;
@@ -89,13 +92,13 @@ namespace Omni_CustomSquads
                         switch (role)
                         {
                             case RoleTypeId.NtfCaptain:
-                                customSquad.customCaptain.AddRole(player);
+                                player.SetCustomRole(customSquad.customCaptain);
                                 break;
                             case RoleTypeId.NtfSergeant:
-                                customSquad.customSergeant.AddRole(player);
+                                player.SetCustomRole(customSquad.customSergeant);
                                 break;
                             case RoleTypeId.NtfPrivate:
-                                customSquad.customPrivate.AddRole(player);
+                                player.SetCustomRole(customSquad.customPrivate);
                                 break;
                         }
                     }

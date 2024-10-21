@@ -54,20 +54,15 @@ namespace Omni_Customitems.Items.Globergooban
                 {
                     return;
                 }
-                if (ev.Target.IsGodModeEnabled)
-                {
-                    ev.CanHurt = false;
-                    return;
-                }
                 ev.CanHurt = false;
                 if (ev.Target != null)
                 {
+                    if (ev.Target.IsGodModeEnabled)
+                    {
+                        return;
+                    }
                     ev.Target.Hurt(new DisruptorDamageHandler(ev.Player.Footprint, Damage));
                     ev.Player.ShowHitMarker(2.55f);
-                }
-                else
-                {
-
                 }
 
             }

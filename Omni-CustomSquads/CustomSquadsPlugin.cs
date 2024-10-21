@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using UncomplicatedCustomRoles.API.Features;
 
 namespace Omni_CustomSquads
 {
@@ -64,21 +65,29 @@ namespace Omni_CustomSquads
             {
                 CustomSquad squad = Config.customSquads[i];
 
-                squad.customCaptain.CustomInfo = $"{squad.CustomInfo} {squad.Ranks[0]}";
-                squad.customCaptain.Id += Config.IdPrefix;
-                squad.customCaptain.Register();
+                SetupRole(squad.customCaptain, squad,0);
 
-                squad.customSergeant.CustomInfo = $"{squad.CustomInfo} {squad.Ranks[1]}";
-                squad.customSergeant.Id += Config.IdPrefix;
-                squad.customSergeant.Register();
+                SetupRole(squad.customSergeant, squad, 1);
 
-                squad.customPrivate.CustomInfo = $"{squad.CustomInfo} {squad.Ranks[2]}";
-                squad.customPrivate.Id += Config.IdPrefix;
-                squad.customPrivate.Register();
+                SetupRole(squad.customPrivate, squad, 2);
 
                 pluginInstance.squadNameToIndex.Add(squad.SquadName, i);
                 Log.Info($"{squad.SquadName} {i}");
             }
+        }
+        public static void SetupRole(CustomCaptain customCaptain, CustomSquad squad, int Rank)
+        {
+            customCaptain.Team = squad.Team;
+            customCaptain.IsFriendOf = squad.IsFriendsWith;
+
+            customCaptain.RoleAppearance = customCaptain.Role;
+            customCaptain.SpawnBroadcast = squad.SpawnBroadcast + $" You are a {squad.Ranks[Rank]}";
+            customCaptain.SpawnBroadcastDuration = 15;
+            customCaptain.CustomInfo = $"{squad.CustomInfo} {squad.Ranks[Rank]}";
+            customCaptain.Id += pluginInstance.Config.IdPrefix;
+            customCaptain.CanEscape = false;
+            customCaptain.RoleAfterEscape = null;
+            UncomplicatedCustomRoles.API.Features.CustomRole.Register(customCaptain);
         }
         public override void OnDisabled()
         {
