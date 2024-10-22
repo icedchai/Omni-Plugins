@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Enums;
 using Exiled.API.Interfaces;
 using PlayerRoles;
 
@@ -23,8 +24,22 @@ namespace Omni_Utils
 
         [Description("Whether to allow modmail")]
         public bool ModMailEnabled { get; set; } = true;
-        [Description("Whether to utilize Custom Keycard functions")]
-        public bool CustomKeycardsQuestionMark { get; set; } = true;
+        [Description("Keycard ItemTypes and the permissions that go with them.")]
+        public Dictionary<ItemType,KeycardPermissions> Permissions { get; set; } = new Dictionary<ItemType, KeycardPermissions> {
+            { ItemType.KeycardScientist , KeycardPermissions.ContainmentLevelOne|KeycardPermissions.ContainmentLevelTwo|KeycardPermissions.Checkpoints}
+        };
+        public List<ItemType> ScpPedestalCardBlacklist { get; set; } = new List<ItemType>
+        {
+            ItemType.KeycardScientist
+        };
+        public Dictionary<DoorType, KeycardPermissions> DoorPermsOverride { get; set; } = new Dictionary<DoorType, KeycardPermissions>
+        {
+            {DoorType.Intercom, KeycardPermissions.ArmoryLevelTwo|KeycardPermissions.ContainmentLevelThree }
+        };
+        public List<DoorType> InvincibleDoors { get; set; } = new List<DoorType> { 
+            DoorType.Intercom,
+            DoorType.HID,
+        };
 
     }
 }
