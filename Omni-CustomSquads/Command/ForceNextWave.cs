@@ -28,8 +28,7 @@ namespace Omni_CustomSquads.Command
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
-            Cassie.MessageTranslated("MTFUnit nato_d 4 designated Minute Men hasentered", "MTFUnit nato_d 4 designated Minute Men hasentered", false, true, true);
-            Cassie.MessageTranslated("allremaining", "allremaining", false, false, true);
+
             if (!player.CheckPermission(PlayerPermissions.RoundEvents))
             {
                 response = "You do not have permission to use this command! Permission: PlayerPermissions.RoundEvents";
