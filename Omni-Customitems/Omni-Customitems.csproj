@@ -108,8 +108,8 @@
     <Compile Include="Items\Globergooban\LaserPistol.cs" />
     <Compile Include="Items\Legacy\LaserPistolLegacy.cs" />
     <Compile Include="Items\Globergooban\LaserRifle.cs" />
-    <Compile Include="Items\SmokeGrenade.cs" />
     <Compile Include="Items\Globergooban\AbstractLaserGun.cs" />
+    <Compile Include="Items\SwatMP7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
