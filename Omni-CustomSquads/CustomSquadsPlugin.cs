@@ -22,7 +22,7 @@ namespace Omni_CustomSquads
 
         public override string Prefix => "omni-customsquads";
 
-        public override Version Version => new(1, 0, 0);
+        public override Version Version => new(1, 2, 0);
 
         //squadsToIndex is used to go from the squadname to the index in Config.customSquads, to 
         //allow accessing other properties of the squad from just the name.
