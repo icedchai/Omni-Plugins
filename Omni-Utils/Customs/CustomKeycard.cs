@@ -9,8 +9,7 @@ namespace Omni_Utils
 {
     public class CustomKeycard
     {
-        public string OwnerName;
-        public string CardName;
-        public KeycardPermissions Permissions;
+        public bool AssignedPermissions=false;
+        public bool CanOpenPedestal=true;
     }
 }

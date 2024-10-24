@@ -18,14 +18,14 @@ namespace Omni_SaveLoad.API
     {
         public static void Load(Player player, out string response, out bool allowed)
         {
-            if (!SaveLoadPlugin.SavePlayers.TryGetValue(player.UserId, out SaveState jail))
+            if (!SaveLoadPlugin.SavePlayers.TryGetValue(player.Id, out SaveState jail))
             {
                 response = "No save state available for this player";
                 allowed = false;
             }
             player.ShowHint("Loading...", 7);
 
-            SaveState saveFile = SaveLoadPlugin.SavePlayers[player.UserId];
+            SaveState saveFile = SaveLoadPlugin.SavePlayers[player.Id];
             player.Role.Set(saveFile.Role, RoleSpawnFlags.None);
             //newItems is meant to ultimately store every item the player has acquired since they last saved
             var newItems = new List<Item> { };
@@ -108,15 +108,15 @@ namespace Omni_SaveLoad.API
             {
                 newItems.Add(item);
             }
-            SaveLoadPlugin.SavePlayers[player.UserId].Items.Clear();
-            SaveLoadPlugin.SavePlayers[player.UserId].Items = newItems;
+            SaveLoadPlugin.SavePlayers[player.Id].Items.Clear();
+            SaveLoadPlugin.SavePlayers[player.Id].Items = newItems;
             Random rnd = new Random();
             if (rnd.Next(1, 100) < SaveLoadPlugin.pluginInstance.Config.NodeGraphChance)
                 player.ShowHint("Node Graph out of Date. Rebuilding...", 8);
             response = "Loaded!";
             // Return true if the command was executed successfully; otherwise, false.
             allowed= true;
-            Log.Info($"Player {player.Nickname} {player.UserId} Loaded: {response}, allowed: {allowed},");
+            Log.Info($"Player {player.Nickname} {player.Id} Loaded: {response}, allowed: {allowed},");
         }
 
         public static void Save(Player player, out string response, out bool allowed)
@@ -126,10 +126,10 @@ namespace Omni_SaveLoad.API
                 response = "You cannot save a state while dead";
                 allowed=false;
             }
-            if (SaveLoadPlugin.SavePlayers.ContainsKey(player.UserId))
+            if (SaveLoadPlugin.SavePlayers.ContainsKey(player.Id))
             {
-                SaveLoadPlugin.SavePlayers.Remove(player.UserId);
-                SaveLoadPlugin.SavePlayers.Add(player.UserId, new SaveState
+                SaveLoadPlugin.SavePlayers.Remove(player.Id);
+                SaveLoadPlugin.SavePlayers.Add(player.Id, new SaveState
                 {
                     Health = player.Health,
                     AHP = player.ArtificialHealth,
@@ -144,7 +144,7 @@ namespace Omni_SaveLoad.API
             }
             else
             {
-                SaveLoadPlugin.SavePlayers.Add(player.UserId, new SaveState
+                SaveLoadPlugin.SavePlayers.Add(player.Id, new SaveState
                 {
                     Health = player.Health,
                     RelativePosition = player.RelativePosition,
@@ -160,7 +160,7 @@ namespace Omni_SaveLoad.API
             response = "Saved!";
             // Return true if the command was executed successfully; otherwise, false.
             allowed = true;
-            Log.Info($"Player {player.Nickname} {player.UserId} Saved: {response}, allowed: {allowed},");
+            Log.Info($"Player {player.Nickname} {player.Id} Saved: {response}, allowed: {allowed},");
         }
     }
 }

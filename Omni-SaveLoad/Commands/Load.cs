@@ -10,6 +10,8 @@ using PlayerRoles;
 using SCP_SL_SAVELOAD;
 using System;
 using System.Collections.Generic;
+using UncomplicatedCustomRoles.API.Features;
+using UncomplicatedCustomRoles.Extensions;
 
 namespace SCP_SL_Test_Plugin.Commands
 {
@@ -27,12 +29,12 @@ namespace SCP_SL_Test_Plugin.Commands
         {
 
             Player player = Player.Get(sender);
-            if (!SaveLoadPlugin.pluginInstance.Config.AllowedPlayers.Contains(player.UserId))
+            if (!SaveLoadPlugin.pluginInstance.Config.CustomInfoAllowed.Contains(player.CustomInfo.ToLower()))
             {
                 response = "You do not have permission to load a save.";
                 return false;
             }
-
+            
             bool allowed=false;
 
             SaveLoadAPI.Load(player, out response, out allowed);

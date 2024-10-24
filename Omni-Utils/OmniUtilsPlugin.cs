@@ -25,13 +25,13 @@ namespace Omni_Utils
 
         public override string Prefix => "omni-utils";
 
-        public override Version Version => new(1, 0, 2);
+        public override Version Version => new(1, 2, 2);
 
         public List<string> ModMailBans { get; set; } = new List<string> { "PUT IDS HERE"};
 
         public static string ModMailBanPath { get; } = Path.Combine(Paths.Configs,  "mailbans.yml");
-        public List<int> keycardsWithPerms { get; set; } = new List<int>();
-        public List<int> pedestalCards { get; set; } = new List<int>();
+        public Dictionary<int, CustomKeycard> Keycards { get; set; } = new Dictionary<int, CustomKeycard>();
+
         public List<int> Npcs { get; set; } = new List<int>();
         public List<Door> InvincibleDoors { get; set; } = new List<Door>();
         PluginEventHandler EventHandler;

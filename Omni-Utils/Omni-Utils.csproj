@@ -100,7 +100,6 @@
     <Compile Include="Commands\NPCCmd.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Customs\CustomKeycard.cs" />
-    <Compile Include="Customs\CustomPermissions.cs" />
     <Compile Include="EventHandlers\PluginEventHandler.cs" />
     <Compile Include="OmniUtilsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

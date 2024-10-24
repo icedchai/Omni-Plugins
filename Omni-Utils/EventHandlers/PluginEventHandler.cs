@@ -42,9 +42,10 @@ namespace Omni_Utils.EventHandlers
         }
         public void OnKeycardSpawn(Item item)
         {
-            if (item.Type.IsKeycard()&!OmniUtilsPlugin.pluginInstance.keycardsWithPerms.Contains(item.Serial))
+            
+            if (item.Type.IsKeycard()&!OmniUtilsPlugin.pluginInstance.Keycards.ContainsKey(item.Serial))
             {
-
+                CustomKeycard customcard = new CustomKeycard ();
                 KeycardPermissions perms;
                 Log.Info($"Keycard added to inventory! Type is {item.Type}, serial is {item.Serial}");
                 if (!OmniUtilsPlugin.pluginInstance.Config.Permissions.TryGetValue(item.Type, out perms))
@@ -54,11 +55,12 @@ namespace Omni_Utils.EventHandlers
                 }
                 Keycard key = (Keycard)item;
                 key.Permissions = perms;
-                OmniUtilsPlugin.pluginInstance.keycardsWithPerms.Add(item.Serial);
+                customcard.AssignedPermissions=true;
                 if(OmniUtilsPlugin.pluginInstance.Config.ScpPedestalCardBlacklist.Contains(item.Type))
                 {
-                    OmniUtilsPlugin.pluginInstance.pedestalCards.Add(item.Serial);
+                    customcard.CanOpenPedestal=false;
                 }
+                OmniUtilsPlugin.pluginInstance.Keycards.Add(item.Serial, customcard);
                 Log.Info($"Keycard is in config! Adding custom perms to {item.Type} {item.Serial}: {perms}");
             }
         }
@@ -95,7 +97,7 @@ namespace Omni_Utils.EventHandlers
         }
         public void OnDoorDamaged(DamagingDoorEventArgs e)
         {
-            if (OmniUtilsPlugin.pluginInstance.InvincibleDoors.Contains(e.Door))
+            if (OmniUtilsPlugin.pluginInstance.InvincibleDoors.Contains(e.Door)&!(e.DamageType== Interactables.Interobjects.DoorUtils.DoorDamageType.ServerCommand))
             {
                 e.Damage = -100f;
             }
@@ -171,7 +173,9 @@ namespace Omni_Utils.EventHandlers
         {
             if (e.InteractingLocker.Type == LockerType.Pedestal)
             {
-                if (e.Player.CurrentItem != null & OmniUtilsPlugin.pluginInstance.pedestalCards.Contains(e.Player.CurrentItem.Serial)) {
+                CustomKeycard customkeycard;
+                OmniUtilsPlugin.pluginInstance.Keycards.TryGetValue(e.Player.CurrentItem.Serial, out customkeycard);
+                if (e.Player.CurrentItem != null & !customkeycard.CanOpenPedestal) {
                     e.IsAllowed = false; 
                     return;
                 }

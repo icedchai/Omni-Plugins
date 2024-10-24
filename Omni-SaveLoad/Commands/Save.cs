@@ -21,7 +21,7 @@ namespace SCP_SL_SAVELOAD.Commands
         {
             Player player = Player.Get(sender);
 
-            if (!SaveLoadPlugin.pluginInstance.Config.AllowedPlayers.Contains(player.UserId))
+            if (!SaveLoadPlugin.pluginInstance.Config.CustomInfoAllowed.Contains(player.CustomInfo.ToLower()))
             {
                 response = "You do not have permission to create a savestate.";
                 return false;

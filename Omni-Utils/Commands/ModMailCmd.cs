@@ -35,6 +35,11 @@ namespace Omni_Utils.Commands
                 response = "USAGE: modmail (MESSAGE)";
                 return false;
             }
+            if (player.DoNotTrack)
+            {
+                response = "You cannot use modmail with DNT enabled.";
+                return false;
+            }
             if (OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(player.UserId))
             {
                 response = "You are banned from using modmail. Try again later.";
@@ -107,6 +112,11 @@ namespace Omni_Utils.Commands
             }
             if (player.CheckPermission("omni.modmail"))
             {
+                if (bannee.DoNotTrack)
+                {
+                    response = $"{bannee.Nickname} has Do Not Track enabled, and cannot be banned or unbanned from modmail";
+                    return false;
+                }
                 if (!OmniUtilsPlugin.pluginInstance.ModMailBans.Contains(bannee.UserId))
                 {
                     OmniUtilsPlugin.pluginInstance.ModMailBans.Add(bannee.UserId);
